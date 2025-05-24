@@ -7,22 +7,20 @@ application {
     mainClass = "io.ktor.server.netty.EngineMain"
 }
 
-repositories {
-    mavenCentral()
-}
-
 dependencies {
-    implementation(libs.ktor.server.core.jvm)
+    // Core dependencies
     implementation(libs.ktor.server.netty)
     implementation(libs.logback.classic)
     implementation(libs.ktor.server.core)
     implementation(libs.ktor.server.config.yaml)
 
+    // Testing
     testImplementation(libs.ktor.server.test.host)
-    testImplementation(libs.kotlin.test.junit)
 
+    // gRPC integration
     implementation(project(":stub"))
     runtimeOnly(libs.grpc.netty.shaded)
 
+    // GraphQL integration
     implementation(libs.graphql.kotlin.ktor.server)
 }
