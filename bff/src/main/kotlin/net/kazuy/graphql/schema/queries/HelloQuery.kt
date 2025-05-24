@@ -10,8 +10,8 @@ class HelloQuery(
 ) : Query {
     suspend fun hello(name: String): Hello {
         val request = HelloRequest.newBuilder().setName(name).build()
-        val reply = helloService.sayHello(request)
+        val response = helloService.sayHello(request)
 
-        return Hello(reply.message)
+        return Hello(response.message)
     }
 }
