@@ -6,6 +6,7 @@ grpc="1.72.0"
 grpc-kotlin="1.4.3"
 protobuf-kotlin="4.31.0"
 logback="1.5.18"
+graphql-kotlin="9.0.0-alpha.8"
 
 [plugins]
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
@@ -34,3 +35,5 @@ protoc-gen-grpc-kotlin = { group = "io.grpc", name = "protoc-gen-grpc-kotlin", v
 protobuf-kotlin = { group = "com.google.protobuf", name = "protobuf-kotlin", version.ref = "protobuf-kotlin" }
 protoc = { group = "com.google.protobuf", name = "protoc", version.ref = "protobuf-kotlin" }
 protobuf-java-util = { group = "com.google.protobuf", name = "protobuf-java-util", version.ref = "protobuf-kotlin" }
+
+graphql-kotlin-ktor-server = { group = "com.expediagroup", name = "graphql-kotlin-ktor-server", version.ref = "graphql-kotlin" }
