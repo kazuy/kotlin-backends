@@ -23,4 +23,6 @@ dependencies {
 
     implementation(project(":stub"))
     runtimeOnly(libs.grpc.netty.shaded)
+
+    implementation(libs.graphql.kotlin.ktor.server)
 }
