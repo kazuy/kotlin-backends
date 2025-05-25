@@ -11,8 +11,9 @@ data class GrpcConfiguration(
 
 fun Application.configureGrpc(): GrpcConfiguration {
     val port = System.getenv("INTERNAL_API_PORT")?.toInt() ?: 50051
+    val host = System.getenv("INTERNAL_API_HOST") ?: "localhost"
     val channel = ManagedChannelBuilder
-        .forAddress("localhost", port)
+        .forAddress(host, port)
         .usePlaintext()
         .build()
 

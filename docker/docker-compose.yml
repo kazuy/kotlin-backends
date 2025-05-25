@@ -1,0 +1,28 @@
+services:
+  internal-api:
+    container_name: internal-api
+    build:
+      context: ../
+      dockerfile: ./docker/internal-api/Dockerfile
+    ports:
+      - "50051:50051"
+    networks:
+      - backend
+
+  bff:
+    container_name: bff
+    build:
+      context: ../
+      dockerfile: ./docker/bff/Dockerfile
+    ports:
+      - "8080:8080"
+    depends_on:
+      - internal-api
+    networks:
+      - backend
+    environment:
+      INTERNAL_API_HOST: internal-api
+      INTERNAL_API_PORT: 50051
+
+networks:
+  backend:

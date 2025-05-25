@@ -43,3 +43,14 @@ sequenceDiagram
 3. Access GraphiQL at http://localhost:8080/graphiql
 
 GraphQL endpoint is available at http://localhost:8080/graphql
+
+## Build Container Images
+
+```shell
+docker build -t internal-api:latest -f ./docker/internal-api/Dockerfile .
+docker build -t bff:latest -f ./docker/bff/Dockerfile .
+
+# compose
+docker compose -p kotlin-backends -f ./docker/docker-compose.yml build
+docker compose -p kotlin-backends -f ./docker/docker-compose.yml up -d
+```
