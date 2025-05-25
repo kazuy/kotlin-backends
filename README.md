@@ -50,7 +50,11 @@ GraphQL endpoint is available at http://localhost:8080/graphql
 docker build -t internal-api:latest -f ./docker/internal-api/Dockerfile .
 docker build -t bff:latest -f ./docker/bff/Dockerfile .
 
-# compose
-docker compose -p kotlin-backends -f ./docker/docker-compose.yml build
-docker compose -p kotlin-backends -f ./docker/docker-compose.yml up -d
+# compose - development
+docker volume create kotlin_backends_postgres_data
+docker compose -p kotlin-backends -f ./docker/docker-compose.dev.yml up -d
+
+# compose - build
+docker compose -p kotlin-backends -f ./docker/docker-compose.build.yml build
+docker compose -p kotlin-backends -f ./docker/docker-compose.build.yml up -d
 ```

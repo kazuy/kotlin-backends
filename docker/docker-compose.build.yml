@@ -1,0 +1,61 @@
+services:
+  internal-api:
+    container_name: internal-api
+    build:
+      context: ../
+      dockerfile: ./docker/internal-api/Dockerfile
+    ports:
+      - "50051:50051"
+    networks:
+      - backend
+
+  bff:
+    container_name: bff
+    build:
+      context: ../
+      dockerfile: ./docker/bff/Dockerfile
+    ports:
+      - "8080:8080"
+    depends_on:
+      - internal-api
+    networks:
+      - backend
+    environment:
+      INTERNAL_API_HOST: internal-api
+      INTERNAL_API_PORT: 50051
+
+  postgres-writer:
+    container_name: postgres-writer
+    image: postgres:17.5
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: may-the-force-be-with-you
+    ports:
+      - "5432:5432"
+    volumes:
+      - backend:/var/lib/postgresql/data
+    networks:
+      - backend
+
+  postgres-reader:
+    container_name: postgres-reader
+    image: postgres:17.5
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: may-the-force-be-with-you
+    ports:
+      - "5433:5432"
+    volumes:
+      - backend:/var/lib/postgresql/data:ro
+    depends_on:
+      - postgres-writer
+    networks:
+      - backend
+
+networks:
+  backend:
+
+volumes:
+  backend:
+    name: backend_postgres
+    external: true
