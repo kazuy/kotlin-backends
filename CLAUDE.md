@@ -93,3 +93,26 @@ docker compose -p kotlin-backends -f ./docker/docker-compose.build.yml up -d
 - gRPC stubs are generated from proto files using protobuf plugin
 - Generated code includes both Java and Kotlin variants
 - Kotlin coroutine stubs are used for async operations
+
+## Commit Message Guidelines
+
+Follow the conventional commit format used in this project:
+
+```
+<type>: <description>
+
+🤖 Generated with [Claude Code](https://claude.ai/code)
+
+Co-Authored-By: Claude <noreply@anthropic.com>
+```
+
+### Commit Types
+- `feat:` - New features
+- `fix:` - Bug fixes
+- `refactor:` - Code restructuring without changing functionality
+
+### Examples from Project History
+- `feat: add postgres container`
+- `feat: add hello handler test`
+- `fix: update`
+- `fix: refactor`
